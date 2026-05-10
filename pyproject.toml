@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quelque"
+version = "0.1.0"
+description = "Lecture-to-notes assistant for long-form audio."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Pablo Ferrer Gonzalez" }
+]
+dependencies = [
+  "faster-whisper>=1.1.0",
+  "fpdf2>=2.7.9",
+  "google-genai>=0.2.0",
+  "huggingface-hub>=0.21.0",
+  "openai>=1.75.0",
+  "pydantic>=2.11.0",
+  "pydub>=0.25.1",
+  "python-docx>=1.1.2",
+  "streamlit>=1.44.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.5",
+  "ruff>=0.11.5",
+]
+docs = [
+  "furo>=2024.8.6",
+  "myst-parser>=4.0.1",
+  "sphinx>=8.1.3",
+]
+
+[project.scripts]
+quelque = "quelque.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
